@@ -585,20 +585,14 @@ namespace LasUpload
 								za.CreateEntry(strTrayName + @"\");
 
 								List<string> lstImgTypes = Directory.GetDirectories(strTrayPath, "*", SearchOption.TopDirectoryOnly).ToList();
-								foreach (string strTypePath in lstImgTypes) {
+
+                                strExtensions = new[] { "*.jpg", "*.png" };
+
+                                foreach (string strTypePath in lstImgTypes) {
 									if (!strTypePath.Contains("ResultImage") && !strTypePath.Contains("ReviewImage") && !strTypePath.Contains("AdjImage")) continue;
 
 									string strTypeName = strTypePath.Substring(strTypePath.LastIndexOf(@"\") + 1);
 									za.CreateEntry(strTrayName + @"\" + strTypeName + @"\");
-
-                                    if (strTypeName.Contains("AdjImage"))
-                                    {
-                                        strExtensions = new[] { "*.png" };     // ADJ 이미지 → PNG
-                                    }
-                                    else
-                                    {
-                                        strExtensions = new[] { "*.jpg" };     
-                                    }
 
                                     foreach (string strExt in strExtensions)
                                     {
